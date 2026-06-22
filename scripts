@@ -1,1 +1,8 @@
+import { access, readFile } from 'node:fs/promises'
 
+await access('index.html')
+await access('src/main.js')
+await access('src/styles.css')
+const html = await readFile('index.html', 'utf8')
+if (!html.includes('/src/main.js')) throw new Error('index.html must load /src/main.js')
+console.log('Static Campus Pet MVP files are present.')
